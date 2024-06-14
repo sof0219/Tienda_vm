@@ -11,13 +11,8 @@ body {
     font-family:sans-serif;
     margin:0;
     box-sizing: border-box;
-
 }
-aside h1 {
-    color: green;
-}
-
-header{
+.encabezado{
     position:  fixed;
     background-color:  #0066cc;
     color: white;
@@ -27,7 +22,30 @@ header{
     height: 90px;
     padding:10px;
 }
-
+.navegacion{
+    display:flex;
+    justify-content:space-between;
+    margin: 0 auto;
+}
+.nav-link{
+    color:white;
+    text-decoration: none;
+}
+.logo{
+    font-size: 30px;
+    font-weight: bold;
+    padding: 0 40px;
+    line-height: 90px;
+}
+.nav-menu{
+    display:flex;
+    margin-right:40px;
+    list-style: none;
+}
+.nav-menu-item{
+    font-size: 18px;
+    margin: 0 10px
+}
 aside {
     position:  fixed;
     background-color: #99ccff ;
@@ -60,14 +78,15 @@ footer {
     height: 20px;
 }
 
-a{
+.nav-menu-link {
     text-decoration: none;
     color:white;
     font-size:20px;
     padding:5px;
     border-radius:5px;
 }
-nav a:hover{
-    animation-delay: 1s;
+.nav-menu-link:hover {
+    transition:0.5s;
     background-color: blue;
+    font-size:22px;
 }
