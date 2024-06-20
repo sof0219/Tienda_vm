@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!--Esta es la primera página web de hoy...-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}"/>
+        <title>TechShop</title>
+        <meta charset="UTF-8"/>
+        <link th:href="@{webjars/bootstrap/css/bootstrap.min.css}" 
+              rel="stylesheet}"/>
+    </head>
+    
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>  
+          <h3>Esto es propio del index...</h3>
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>
