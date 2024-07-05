@@ -8,8 +8,8 @@
  */
 package com.tienda.controller;
 
-import com.tienda.domain.Categoria;
-import com.tienda.services.CategoriaService;
+import com.tienda.domain.Producto;
+import com.tienda.services.ProductoService;
 import com.tienda.services.FirebaseStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,54 +21,54 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-@RequestMapping("/categoria")
-public class CategoriaController {
+@RequestMapping("/producto")
+public class ProductoController {
     
     @Autowired
-    private CategoriaService categoriaService;
+    private ProductoService productoService;
     
     
     @GetMapping("/listado")
     public String listado(Model model) {
-        var lista=categoriaService.getCtegorias(false);
-        model.addAttribute("categorias", lista);
-        model.addAttribute("totalCategorias", lista.size());
+        var lista=productoService.getCtegorias(false);
+        model.addAttribute("productos", lista);
+        model.addAttribute("totalProductos", lista.size());
         
-        return "/categoria/listado";
+        return "/producto/listado";
     }
     
     @Autowired
     private FirebaseStorageService firebaseStorageService;
     
     @PostMapping("/guardar")
-    public String guardar(Categoria categoria, 
+    public String guardar(Producto producto, 
             @RequestParam("imagenFile") MultipartFile imagenFile) {
         
         if (!imagenFile.isEmpty()) { //Si se pasó algo se guarda la imagen
-            categoriaService.save(categoria);
+            productoService.save(producto);
             String rutaImagen = firebaseStorageService
-                    .cargaImagen(imagenFile, "categoria", 
-                            categoria.getIdCategoria());
-            categoria.setRutaImagen(rutaImagen);
+                    .cargaImagen(imagenFile, "producto", 
+                            producto.getIdProducto());
+            producto.setRutaImagen(rutaImagen);
             
         }
         
-        categoriaService.save(categoria);
-        return "redirect:/categoria/listado";
+        productoService.save(producto);
+        return "redirect:/producto/listado";
     }
     
-    @GetMapping("/eliminar/{idCategoria}")
-    public String eliminar(Categoria categoria) {
-        categoriaService.delete(categoria);
-        return "redirect:/categoria/listado";
+    @GetMapping("/eliminar/{idProducto}")
+    public String eliminar(Producto producto) {
+        productoService.delete(producto);
+        return "redirect:/producto/listado";
     }
     
-    @GetMapping("/modificar/{idCategoria}")
-    public String modificar(Categoria categoria, Model model) {
-        categoria = categoriaService.getCategoria(categoria);
-        model.addAttribute("categoria", categoria);
+    @GetMapping("/modificar/{idProducto}")
+    public String modificar(Producto producto, Model model) {
+        producto = productoService.getProducto(producto);
+        model.addAttribute("producto", producto);
         
-        return "/categoria/modifica";
+        return "/producto/modifica";
     }
     
     

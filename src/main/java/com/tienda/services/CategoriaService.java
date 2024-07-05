@@ -5,15 +5,32 @@
 package com.tienda.services;
 
 import com.tienda.domain.Categoria;
+
 import java.util.List;
 
-/**
- *
- * @author user
- */
+
 public interface CategoriaService {
-    //Se obtienen los registros de la tambla categoria en una Array list
+   //se obtiene los registros de la tabala categoria en un arrayList
     //de objetos Categoria, todos o solo los activos
     
-   public List<Categoria> getCategorias(boolean activos);
+    public List<Categoria> getCtegorias(boolean activos);
+    
+    
+    //Recupera el redisto de la tabla categoria en un objeto categoria
+    // si el id categoria existe.. sino devuelve null
+    
+    public Categoria getCategoria(Categoria categoria);
+    
+    //Actualiza un registro en la tabla categoria existe
+    //Crea un registro en la tabla categoria si idCategoria no tiene valor
+    
+    public void save(Categoria categoria);
+    
+    //Elimina el registro de la tabla categoria si idCategoria existe en la
+    public void delete(Categoria categoria);
+    
 }
+    
+    
+    
+   
