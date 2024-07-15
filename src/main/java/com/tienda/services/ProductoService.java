@@ -13,7 +13,7 @@ public interface ProductoService {
    //se obtiene los registros de la tabala producto en un arrayList
     //de objetos Producto, todos o solo los activos
     
-    public List<Producto> getCtegorias(boolean activos);
+    public List<Producto> getProductos(boolean activos);
     
     
     //Recupera el redisto de la tabla producto en un objeto producto

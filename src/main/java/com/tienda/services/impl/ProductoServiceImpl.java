@@ -21,7 +21,7 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Producto> getCtegorias(boolean activos) {
+    public List<Producto> getProductos(boolean activos) {
         var lista = productoDao.findAll();
         
         if (activos){
