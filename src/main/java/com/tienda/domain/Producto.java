@@ -19,7 +19,7 @@ public class Producto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name="id_producto")
     private Long idProducto;
-    private Long idCategoria;
+   // private Long idCategoria;no se usa mas por el manyToOne
     private String descripcion;
     private String detalle;
     private double precio;
@@ -30,4 +30,3 @@ public class Producto implements Serializable {
     @JoinColumn(name="id_categoria")
     private Categoria categoria;
 }
-
