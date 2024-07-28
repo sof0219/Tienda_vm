@@ -29,6 +29,14 @@ public interface ProductoService {
     //Elimina el registro de la tabla producto si idProducto existe en la
     public void delete(Producto producto);
     
+    public List<Producto>consulta1(double precioInf, double precioSup);
+
+    public List<Producto>consulta2(double precioInf, double precioSup);
+    
+    public List<Producto>consulta3(double precioInf, double precioSup);
+    
+    public List<Producto>consulta4(String descripcion);
+        
 }
     
     
