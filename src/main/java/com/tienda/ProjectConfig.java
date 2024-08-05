@@ -6,9 +6,11 @@ package com.tienda;
 
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -48,6 +50,17 @@ public class ProjectConfig implements WebMvcConfigurer {
         registro.addInterceptor(localeChangeInterceptor());
 
     }
+    
+    @Bean("messageSource")
+    public MessageSource messageSource(){
+        ResourceBundleMessageSource messageSource =
+                new ResourceBundleMessageSource();
+        messageSource.setBasenames("messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
+    }
+    
+    
   /* Los siguiente métodos son para implementar el tema de seguridad dentro del proyecto */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -117,7 +130,7 @@ public class ProjectConfig implements WebMvcConfigurer {
             AuthenticationManagerBuilder build)
             throws Exception {
         build.userDetailsService(userDetailsService)
-                .passwordEncoder(new BCryptPasswordEncoder() );
+                .passwordEncoder(new BCryptPasswordEncoder());
 
     }
 
