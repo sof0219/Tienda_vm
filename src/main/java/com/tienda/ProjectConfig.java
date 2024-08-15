@@ -75,24 +75,22 @@ public class ProjectConfig implements WebMvcConfigurer {
         http
                 .authorizeHttpRequests((request) -> request
                 .requestMatchers("/","/index","/errores/**",
-                        "/carrito/**","/pruebas/**","/reportes/**",
-                        "/registro/**","/js/**","/webjars/**")
+                        "/carrito/**","/pruebas/**","/contacto/**","/informacion/**","/servicios/**","/citas/**","/login/**",
+                        "/registroUser/**","/js/**","/webjars/**","/servicios/**", "/usuario/**")
                         .permitAll()
                 .requestMatchers(
-                        "/producto/nuevo","/producto/guardar",
-                        "/producto/modificar/**","/producto/eliminar/**",
-                        "/categoria/nuevo","/categoria/guardar",
-                        "/categoria/modificar/**","/categoria/eliminar/**",
-                        "/usuario/nuevo","/usuario/guardar",
+                        "/contacto/**","/registroUser/**","/informacion/**","/servicios/**","/citas/**","/login/**",
+                        "/usuario/**",
+                        "/login/**",
                         "/usuario/modificar/**","/usuario/eliminar/**",
-                        "/reportes/**"
+                        "/reportes/**","/servicios/**"
                 ).hasRole("ADMIN")
                 .requestMatchers(
-                        "/producto/listado",
+                        "/producto/listado","/registroUser/**",
                         "/categoria/listado",
                         "/usuario/listado"
                 ).hasAnyRole("ADMIN", "VENDEDOR")
-                .requestMatchers("/facturar/carrito")
+                .requestMatchers("/login/**","/contacto/**","/informacion/**","/servicios/**","/citas/**","/login/**","/registroUser/**")
                 .hasRole("USER")
                 )
                 .formLogin((form) -> form

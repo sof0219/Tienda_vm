@@ -6,6 +6,16 @@
  * FUNCION CARGA UN ARCHIVO DE IMAGEN
  */
 
+function addCart (formulario){
+      window.alert("aqui estoy");
+    var idProducto = formulario.elements[0].value;
+    var existencias = formulario.elements[1].value;
+    if (existencias > 0){
+        var url="/carrito/agregar/"+ idProducto;
+      
+        $("#resultsBlock").load(url);
+    }
+}
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -17,3 +27,4 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+

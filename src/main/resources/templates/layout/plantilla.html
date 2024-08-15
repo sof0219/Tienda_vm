@@ -50,6 +50,11 @@
                                 </ul>
                             </li>
                         </ul>
+                        
+                        <div id="resultsBlock">
+                            
+                        </div>
+                        
                         <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
                             <li class="nav-item px-2">
                                 <a class="nav-menu-link nav-link"
@@ -61,11 +66,11 @@
                         
                         <ul class="navbar-nav" sec:authorize="isAuthenticated()">
                             <li class="nav-item my-auto text-white">
-                                <img src="@{${session.imagenUsuario}}" 
+                                <img th:src="@{${session.imagenUsuario}}" 
                                      class="rounded-circle"
-                                     height="height" 
+                                     height="40" 
                                      alt=""/>
-                                <span sec:authentication='name'>Jhon</span>
+                                <span sec:authentication='name'></span>
                             </li>
                             <li class="nav-item my-auto text-white">
                                  <form method= "post"
