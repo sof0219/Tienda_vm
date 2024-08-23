@@ -25,6 +25,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
 public class ProjectConfig implements WebMvcConfigurer {
@@ -71,26 +73,28 @@ public class ProjectConfig implements WebMvcConfigurer {
  }
 
 @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((request) -> request
                 .requestMatchers("/","/index","/errores/**",
-                        "/carrito/**","/pruebas/**","/contacto/**","/informacion/**","/servicios/**","/citas/**","/login/**",
-                        "/registroUser/**","/js/**","/webjars/**","/servicios/**", "/usuario/**")
+                        "/carrito/**","/pruebas/**","/reportes/**",
+                        "/registro/**","/js/**","/webjars/**","/factura/**")
                         .permitAll()
                 .requestMatchers(
-                        "/contacto/**","/registroUser/**","/informacion/**","/servicios/**","/citas/**","/login/**",
-                        "/usuario/**",
-                        "/login/**",
+                        "/producto/nuevo","/producto/guardar","/carrito/**",
+                        "/producto/modificar/**","/producto/eliminar/**",
+                        "/categoria/nuevo","/categoria/guardar",
+                        "/categoria/modificar/**","/categoria/eliminar/**",
+                        "/usuario/nuevo","/usuario/guardar",
                         "/usuario/modificar/**","/usuario/eliminar/**",
-                        "/reportes/**","/servicios/**"
+                        "/reportes/**", "/factura/**"
                 ).hasRole("ADMIN")
                 .requestMatchers(
-                        "/producto/listado","/registroUser/**",
+                        "/producto/listado","/carrito/**",
                         "/categoria/listado",
-                        "/usuario/listado"
+                        "/usuario/listado","/factura/**"
                 ).hasAnyRole("ADMIN", "VENDEDOR")
-                .requestMatchers("/login/**","/contacto/**","/informacion/**","/servicios/**","/citas/**","/login/**","/registroUser/**")
+                .requestMatchers("/facturar/carrito")
                 .hasRole("USER")
                 )
                 .formLogin((form) -> form
@@ -129,7 +133,16 @@ public class ProjectConfig implements WebMvcConfigurer {
             throws Exception {
         build.userDetailsService(userDetailsService)
                 .passwordEncoder(new BCryptPasswordEncoder());
-
     }
+    @Bean
+    public SpringResourceTemplateResolver templateResolver_0() {
+        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+        resolver.setPrefix("classpath:/templates");
+        resolver.setSuffix(".html");
+        resolver.setTemplateMode(TemplateMode.HTML);
+        resolver.setOrder(0);
+        resolver.setCheckExistence(true);
+        return resolver;
+    } 
 
 }
